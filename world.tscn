@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2cw5sbcowk2m"]
+[gd_scene load_steps=7 format=3 uid="uid://b2cw5sbcowk2m"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_qmcu8"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_my08u"]
-size = Vector3(20, 0.1, 20)
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_cceun"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_k75mr"]
 size = Vector2(20, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jiopp"]
+albedo_color = Color(0.3476, 0.55, 0.022, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3t6w0"]
 
@@ -17,10 +19,12 @@ size = Vector2(20, 20)
 [node name="Ground" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
-shape = SubResource("BoxShape3D_my08u")
+shape = SubResource("WorldBoundaryShape3D_cceun")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00154114, 0.0168591, 0.00956964)
 mesh = SubResource("PlaneMesh_k75mr")
+surface_material_override/0 = SubResource("StandardMaterial3D_jiopp")
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14646, 0)
